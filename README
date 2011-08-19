@@ -1,0 +1,17 @@
+Load Balancing Verified --TODO
+CUDA Passes Segments off for Distance --TODO
+Return from MPI  -- TODO
+Send to a finalized Writer  --TODO
+
+#############################################################################################
+#
+#    --DISPLAY OPTIONS--
+#				./bin/mpiCudaDetectConflicts -?
+#   
+#    --TO RUN ON ALL NODES--
+#				mpirun -np 40 -machinefile hostfileall bin/mpiCudaDetectConflicts -e
+#   
+#    --TO RUN ON ALL LOCAL NODE ONLY--
+#				mpirun -np 8 -machinefile hostfilelocal bin/mpiCudaDetectConflicts -e
+#
+#############################################################################################
