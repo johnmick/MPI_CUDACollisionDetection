@@ -1,17 +1,26 @@
-Load Balancing Verified --TODO
-CUDA Passes Segments off for Distance --TODO
-Return from MPI  -- TODO
-Send to a finalized Writer  --TODO
+##############################################################################################
+#  TODO LIST                                                                                 #
+##############################################################################################
+#    -- Create A Distance Class Which Uses CPU or GPU to Calculate Distances                 #
+#    -- Update Delegator to Call Distance Function                                           #
+#    -- Implement CPU and GPU Distance Methods                                               #
+#    -- Ensure Global Variable Flags are checked and appropriate Methods are being used      #
+#		 -- Add Metrics to strictly processes which involve the distance calculation             #
+#    -- Add File Output Class And Implement A Method Which Outputs In Existing Format        #
+#		 -- Verify Load Balancing Algorithm on Fringe Cases                                      #
+#    -- Obtain Metrics From Various Methods and Verify Identical Outputs                     #
+##############################################################################################
 
-#############################################################################################
-#
-#    --DISPLAY OPTIONS--
-#				./bin/mpiCudaDetectConflicts -?
-#   
-#    --TO RUN ON ALL NODES--
-#				mpirun -np 40 -machinefile hostfileall bin/mpiCudaDetectConflicts -e
-#   
-#    --TO RUN ON ALL LOCAL NODE ONLY--
-#				mpirun -np 8 -machinefile hostfilelocal bin/mpiCudaDetectConflicts -e
-#
-#############################################################################################
+##############################################################################################
+#  HOW TO USE                                                                                #
+##############################################################################################
+#    --DISPLAY HELP/OPTIONS--                                                                #
+#       ./bin/mpiCudaDetectConflicts -?                                                      #
+#                                                                                            #
+#    --TO RUN ON ALL NODES--                                                                 #
+#				mpirun -np 40 -machinefile hostfileall bin/mpiCudaDetectConflicts -e                 #
+#                                                                                            #
+#    --TO RUN ON ALL LOCAL NODE ONLY--                                                       #
+#				mpirun -np 8 -machinefile hostfilelocal bin/mpiCudaDetectConflicts -e                #
+#                                                                                            #
+##############################################################################################
