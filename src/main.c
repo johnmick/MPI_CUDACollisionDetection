@@ -16,8 +16,11 @@ int main (int argc, char **argv)
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 	mpiStructInit();
 
-	setDefaultGlobals(size);
+	setDefaultGlobals();
 	checkEnvironmentArguments(argc, argv);
+
+	ENDPOINTS = malloc(size * sizeof(int));
+	loadBalance(size, NUM_FLIGHTS, ENDPOINTS);
 
 	if (rank == 0)
 	{
@@ -32,14 +35,14 @@ int main (int argc, char **argv)
 	return 0;
 }
 
-void setDefaultGlobals(int size)
+void setDefaultGlobals()
 {
 	OUTPUT_FLAG = 0;
+	CUDA_ENABLED = 0;
 	NUM_FLIGHTS = 100;
 	NUM_WAYPOINTS = 10001;
-	ENDPOINTS = malloc(size * sizeof(int));
-	strcpy(FULL_FILE_PATH, "flights/outfile%d.txt");
-	loadBalance(size, NUM_FLIGHTS, ENDPOINTS);
+	strcpy(FILE_INPUT_NAME, "outfile%d.txt");
+	strcpy(FILE_DIR_PATH, "flights/");
 }
 
 void checkEnvironmentArguments(int argc, char **argv)
@@ -55,6 +58,7 @@ void checkEnvironmentArguments(int argc, char **argv)
 				if (NUM_FLIGHTS < 2)
 				{
 					printf("Invalid Number of Flights - Must Specify At Least 2\n");
+					MPI_Finalize();
 					exit(0);
 				}
 				break;
@@ -63,8 +67,16 @@ void checkEnvironmentArguments(int argc, char **argv)
 				if (NUM_WAYPOINTS < 1)
 				{
 					printf("Invalid Number of Waypoints - Must Specify At Least 1\n");
+					MPI_Finalize();
 					exit(0);
 				}
+				break;
+			case 'd':
+				strcpy(FILE_DIR_PATH, optarg);
+				break;
+			case 'n':
+				strcpy(FILE_INPUT_NAME, optarg);
+				break;
 			case 'e':
 				OUTPUT_FLAG = 1;
 				break;
@@ -83,11 +95,13 @@ void displayHelp()
 {
 	printf("FLAGS:\n");
 	printf("  -e    Shows Program Output\n");
-	// TO DO
-	//printf("  -m    Enabled Metric Measurements\n");
-	//printf("  -fd   Specify Alternative Flights Data Directory (DEFAULT \"flights/\")\n");
-	//printf("  -fn   Specify Alternative Flights File Name (DEFAULT \"outfile%%d.txt/\")\n");
-	printf("  -f    Specify Alternative Number of Flights (DEFAULT: 10)\n");
+	printf("  -d    Specify Alternative Flights Data Directory          (DEFAULT \"flights/\")\n");
+	printf("  -n    Specify Alternative Flights File Name               (DEFAULT \"outfile%%d.txt/\")\n");
+	printf("  -f    Specify Alternative Number of Flights               (DEFAULT: 10)\n");
 	printf("  -w    Specify Alternative Number of WayPoints per Vehicle (DEFAULT: 10001)\n");
+	//printf("  -m    Enable MPI Load Balancing\n");
+	//printf("  -c    Enable CUDA Based Distance Calculations\n");
+	//printf("  -t    Enabled Metric Measurements\n");
+	MPI_Finalize();
 	exit(0);
 }

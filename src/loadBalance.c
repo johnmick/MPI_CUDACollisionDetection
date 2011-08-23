@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <sys/time.h>
+#include "common.h"
 
 /* This method determines how many calculations each processor should handle
    and then algebraically determines where the next cut-off value is.

@@ -2,10 +2,10 @@
 	#define COMMON_H
 
 	typedef struct {
-		float x;
-		float y;
-		float z;
-		float t;
+		float x; // Horizontal Axis
+		float y; // Horizontal Axis
+		float z; // Vertical (Elevation) Axis
+		float t; // Time in No Defined Metric
 	} WayPoint;
 
 	typedef struct {
@@ -13,14 +13,17 @@
 		int collision;
 	} EventData;
 
-	typedef struct WayPoint* Trajectory;
+	//typedef struct WayPoint* Trajectory;
 
 	int OUTPUT_FLAG;
 	int NUM_FLIGHTS;
 	int NUM_WAYPOINTS;
 	int *ENDPOINTS;
 
-	char FULL_FILE_PATH[255];
+	int CUDA_ENABLED;
 
-	static const char *optString = "w:f:e?";
+	char FILE_DIR_PATH[255];
+	char FILE_INPUT_NAME[255];
+
+	static const char *optString = "w:f:e?d:n:";
 #endif

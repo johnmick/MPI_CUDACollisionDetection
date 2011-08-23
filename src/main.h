@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 
 	#define MAIN_H
-	void setDefaultGlobals(int size);
+	void setDefaultGlobals();
 	void displayHelp();
 	void checkEnvironmentArguments(int argc, char **argv);
 
