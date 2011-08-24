@@ -18,7 +18,6 @@ int main (int argc, char **argv)
 
 	setDefaultGlobals();
 	checkEnvironmentArguments(argc, argv);
-
 	ENDPOINTS = malloc(size * sizeof(int));
 	loadBalance(size, NUM_FLIGHTS, ENDPOINTS);
 
@@ -26,7 +25,7 @@ int main (int argc, char **argv)
 	{
 		hostNode(size);
 	}
-	else
+	else if (size > 1)
 	{
 		clientNode(rank, size);
 	}

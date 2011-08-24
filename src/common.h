@@ -11,6 +11,8 @@
 	typedef struct {
 		float distance;
 		int collision;
+		WayPoint flightOne;
+		WayPoint flightTwo;
 	} EventData;
 
 	//typedef struct WayPoint* Trajectory;

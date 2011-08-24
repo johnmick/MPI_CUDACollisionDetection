@@ -4,24 +4,24 @@
 #include "utilities.h"
 #include "readData.h"
 
-WayPoint **readData(char* folderPath, char* fileName, int numFlights, int numWayPoints)
+WayPoint **readData()
 {
-	char fileNameAndPathFormat[255];
+	char fileNameAndPathFormat[255] = "";
 	char fileNameAndPath[255];
 	int i, k;
 	FILE *inputFile;
 
 	strcat(fileNameAndPathFormat, FILE_DIR_PATH);
 	strcat(fileNameAndPathFormat, FILE_INPUT_NAME);
-	WayPoint **data = allocate2DWayPoints(numFlights, numWayPoints);
+	WayPoint **data = allocate2DWayPoints(NUM_FLIGHTS, NUM_WAYPOINTS);
 
-	if (OUTPUT_FLAG) { printf("Reading %d Flights with %d WayPoints Each From \"%s\": ", numFlights, numWayPoints, fileNameAndPathFormat); }
+	if (OUTPUT_FLAG) { printf("Reading %d Flights with %d WayPoints Each From \"%s\": ", NUM_FLIGHTS, NUM_WAYPOINTS, fileNameAndPathFormat); }
 
-	for (i =0; i < numFlights; i++)
+	for (i =0; i < NUM_FLIGHTS; i++)
 	{
 		sprintf(fileNameAndPath, fileNameAndPathFormat, i);
 		inputFile = fopen(fileNameAndPath, "r");
-		for (k = 0; k < numWayPoints; k++)
+		for (k = 0; k < NUM_WAYPOINTS; k++)
 		{
 			fscanf(
 				inputFile, 
