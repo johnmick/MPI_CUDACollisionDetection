@@ -35,8 +35,12 @@ static void cpuDistanceCalc(int flightOneId, WayPoint *flightOne, int flightTwoI
 			EventData eventData = {
 				0,
 				1,
-				flightOne[i],
-				flightTwo[i]
+				flightOne[i].x,
+				flightOne[i].y,
+				flightOne[i].z,
+				flightTwo[i].x,
+				flightTwo[i].y,
+				flightTwo[i].z
 			};
 			results[flightTwoId][flightOneId] = eventData;
 			//printf("Event for %d %d Created\n", flightTwoId, flightOneId);
